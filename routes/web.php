@@ -86,8 +86,20 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
     });
 });
 
+Route::group(['middleware' => ['auth', 'role:konsumen']], function () {
+    Route::prefix('konsumen')->group(function () {
+        Route::get('gantipass', [KonsumenController::class, 'gantipass']);
+        Route::post('gantipass', [KonsumenController::class, 'resetpass']);
 
-Route::group(['middleware' => ['auth', 'role:superadmin|user']], function () {
+        Route::get('pemesanan', [PemesananController::class, 'index']);
+        Route::get('pemesanan/create', [PemesananController::class, 'create']);
+        Route::get('keranjang/delete/{id}', [PemesananController::class, 'deletekeranjang']);
+        Route::post('/pemesanan/create', [PemesananController::class, 'transaksisimpan']);
+    });
+});
+
+Route::group(['middleware' => ['auth', 'role:superadmin|user|konsumen']], function () {
     Route::get('/superadmin/home', [HomeController::class, 'superadmin']);
     Route::get('/user/home', [HomeController::class, 'user']);
+    Route::get('/konsumen/home', [HomeController::class, 'konsumen']);
 });

@@ -46,6 +46,8 @@
         </div>
         @if (Auth::user()->hasRole('superadmin'))
         @include('layouts.menu_superadmin')
+        @elseif (Auth::user()->hasRole('konsumen'))
+        @include('layouts.menu_konsumen')
         @else
         @include('layouts.menu_user')
         @endif

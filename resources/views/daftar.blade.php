@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LOGIN</title>
+  <title>DAFTAR</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
@@ -23,15 +23,15 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="/" class="h1">LOGIN</a>
+        <a href="/" class="h1">DAFTAR</a>
       </div>
       <div class="card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Daftar Sebagai Konsumen</p>
 
-        <form class="form" action="/login" method="post">
+        <form class="form" action="/daftar" method="post">
           @csrf
           <div class="input-group mb-3">
-            <input type="text" class="form-control" name="username" placeholder="Username" value="{{old('username')}}"
+            <input type="text" class="form-control" name="name" placeholder="Nama lengkap" value="{{old('name')}}"
               required>
             <div class="input-group-append">
               <div class="input-group-text">
@@ -40,8 +40,34 @@
             </div>
           </div>
           <div class="input-group mb-3">
+            <input type="text" class="form-control" name="alamat" placeholder="alamat" value="{{old('alamat')}}"
+              required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" name="telp" placeholder="Telp" value="{{old('telp')}}" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" name="username" placeholder="Username" value="{{old('username')}}"
+              required autocomplete="new-password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
             <input type="password" class="form-control" name="password" placeholder="password"
-              value="{{old('password')}}" required>
+              value="{{old('password')}}" required autocomplete="new-password">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -50,10 +76,10 @@
           </div>
           <div class="row">
             <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+              <button type="submit" class="btn btn-primary btn-block">Daftar</button>
             </div>
             <div class="col-8">
-              <a href="/daftar" class="btn btn-danger btn-block">Daftar sbg konsumen</a>
+              <a href="/login" class="btn btn-danger btn-block">ke halaman login</a>
             </div>
           </div>
         </form>

@@ -10,7 +10,7 @@ UBAH PASSWORD
 <br />
 <div class="row">
     <div class="col-12">
-        <form method="post" action="/superadmin/gantipass">
+        <form method="post" action="/konsumen/gantipass">
             @csrf
             <div class="row">
                 <div class="col-lg-12 col-12">
