@@ -59,8 +59,9 @@
             <td><br />Mengetahui, {{\Carbon\Carbon::now()->translatedFormat('d F Y')}}<br />
                 Kepala Dinas<br /><br /><br /><br />
 
+                H.Muhammad Isa Ansari, SE, M.AP
                 <u>-</u><br />
-                NIP.xxxxxxxxx
+                NIP. 19680111 199303 1 006
             </td>
         </tr>
     </table>

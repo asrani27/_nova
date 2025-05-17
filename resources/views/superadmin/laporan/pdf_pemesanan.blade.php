@@ -74,7 +74,9 @@
                 Kepala Dinas<br /><br /><br /><br />
 
                 <u>-</u><br />
-                NIP.xxxxxxxxx
+                H.Muhammad Isa Ansari, SE, M.AP
+                <u>-</u><br />
+                NIP. 19680111 199303 1 006
             </td>
         </tr>
     </table>
