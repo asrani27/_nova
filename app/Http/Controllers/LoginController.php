@@ -53,9 +53,9 @@ class LoginController extends Controller
             $konsumen->telp = $req->telp;
             $konsumen->user_id = $user->id;
             $konsumen->save();
-            
-            toastr()->success('Berhasil Di Simpan');
 
+            toastr()->success('Berhasil Di Simpan');
+            Auth::loginUsingId($user->id);
             return redirect('/konsumen/home');
         } else {
             toastr()->error('Username sudah digunakan');
