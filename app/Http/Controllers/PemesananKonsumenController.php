@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produk;
+use App\Models\Konsumen;
+use App\Models\Keranjang;
 use App\Models\Pemesanan;
 use Illuminate\Http\Request;
+use App\Models\DetailPemesanan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class PemesananKonsumenController extends Controller
@@ -12,15 +17,15 @@ class PemesananKonsumenController extends Controller
     {
         $data = Pemesanan::where('konsumen_id', Auth::user()->konsumen->id)->paginate(10);
 
-        return view('superadmin.pemesanan.index', compact('data'));
+        return view('konsumen.pemesanan.index', compact('data'));
     }
     public function create()
     {
         $produk = Produk::get();
         $keranjang = Keranjang::get();
-        $konsumen = Konsumen::get();
+        $konsumen = Konsumen::where('id', Auth::user()->konsumen->id)->get();
 
-        return view('superadmin.pemesanan.create', compact('produk', 'keranjang', 'konsumen'));
+        return view('konsumen.pemesanan.create', compact('produk', 'keranjang', 'konsumen'));
     }
     public function deletekeranjang($id)
     {
@@ -44,8 +49,9 @@ class PemesananKonsumenController extends Controller
                 $s = new Keranjang;
                 $s->produk_id       = $req->produk_id;
                 $s->harga           = $produk->harga;
-                $s->jumlah    = $req->jumlah;
-                $s->total     = $produk->harga * $req->jumlah;
+                $s->jumlah          = $req->jumlah;
+                $s->total           = $produk->harga * $req->jumlah;
+                $s->konsumen_id     = Auth::user()->konsumen->id;
                 $s->save();
             } else {
                 $update = $checkKeranjang;
@@ -58,7 +64,7 @@ class PemesananKonsumenController extends Controller
         } else {
             DB::beginTransaction();
             try {
-                $keranjang = Keranjang::get();
+                $keranjang = Keranjang::where('konsumen_id', Auth::user()->konsumen->id)->get();
                 if ($keranjang->count() == 0) {
                     toastr()->error('keranjang Pesanan Kosong');
                     $req->flash();
@@ -83,7 +89,7 @@ class PemesananKonsumenController extends Controller
                 }
                 DB::commit();
                 toastr()->success('Transaksi Berhasil disimpan');
-                return redirect('/superadmin/pemesanan');
+                return redirect('/konsumen/pemesanan');
                 // all good
             } catch (\Exception $e) {
 

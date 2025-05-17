@@ -11,7 +11,7 @@
 @endsection
 @section('content')
 <br />
-<form method="post" action="/superadmin/pemesanan/create">
+<form method="post" action="/konsumen/pemesanan/create">
     <div class="row">
         <div class="col-md-3">
             <div class="card card-primary card-outline">
@@ -82,7 +82,7 @@
                                 <td>Rp. {{number_format($item->harga)}}</td>
                                 <td>{{number_format($item->jumlah)}}</td>
                                 <td>Rp. {{number_format($item->total)}}</td>
-                                <td><a href="/superadmin/keranjang/delete/{{$item->id}}"
+                                <td><a href="/konsumen/keranjang/delete/{{$item->id}}"
                                         onclick="return confirm('Yakin ingin dihapus?');"><i
                                             class="fa fa-trash text-danger"></i></a>
                                 </td>
@@ -91,7 +91,6 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
