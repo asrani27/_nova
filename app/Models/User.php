@@ -17,7 +17,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    
+
     protected $guarded = ['id'];
 
     /**
@@ -38,7 +38,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'role_users');
@@ -48,7 +48,10 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name', $role)->count() == 1;
     }
-
+    public function konsumen()
+    {
+        return $this->hasOne(Konsumen::class, 'user_id');
+    }
     public function toko()
     {
         return $this->hasOne(Toko::class, 'user_id');

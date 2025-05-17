@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pemesanan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PemesananKonsumenController extends Controller
 {
     public function index()
     {
-        $data = Pemesanan::paginate(10);
+        $data = Pemesanan::where('konsumen_id', Auth::user()->konsumen->id)->paginate(10);
 
         return view('superadmin.pemesanan.index', compact('data'));
     }

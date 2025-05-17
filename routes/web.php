@@ -12,16 +12,17 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\BiodataController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\GantiPassController;
 use App\Http\Controllers\KonsumenController;
-use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\GantiPassController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\ProdukSayaController;
 use App\Http\Controllers\PersyaratanController;
+use App\Http\Controllers\PemesananKonsumenController;
 
 Route::get('/', [HomeController::class, 'welcome']);
 Route::get('/tentangkami', [HomeController::class, 'tentang']);
@@ -91,10 +92,10 @@ Route::group(['middleware' => ['auth', 'role:konsumen']], function () {
         Route::get('gantipass', [KonsumenController::class, 'gantipass']);
         Route::post('gantipass', [KonsumenController::class, 'resetpass']);
 
-        Route::get('pemesanan', [PemesananController::class, 'index']);
-        Route::get('pemesanan/create', [PemesananController::class, 'create']);
-        Route::get('keranjang/delete/{id}', [PemesananController::class, 'deletekeranjang']);
-        Route::post('/pemesanan/create', [PemesananController::class, 'transaksisimpan']);
+        Route::get('pemesanan', [PemesananKonsumenController::class, 'index']);
+        Route::get('pemesanan/create', [PemesananKonsumenController::class, 'create']);
+        Route::get('keranjang/delete/{id}', [PemesananKonsumenController::class, 'deletekeranjang']);
+        Route::post('/pemesanan/create', [PemesananKonsumenController::class, 'transaksisimpan']);
     });
 });
 
